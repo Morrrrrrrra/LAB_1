@@ -1,0 +1,119 @@
+using System;
+using System.IO;
+class ViddilKadriv
+{
+   private string pr;
+   private string inic;
+	 private int rik;
+	 private double okl;
+   public ViddilKadriv()
+	    {
+	        Prizv = "Не вказано";
+	        Inicialy = "Не вказано";
+	        RikNarodg = 2006;
+	        Oklad = 0.0;
+	    }
+	    public ViddilKadriv(string prizv, string inicialy, int rikNarodg, double oklad)
+	    {
+	        Prizv = prizv;
+	        Inicialy = inicialy;
+	        RikNarodg = rikNarodg;
+	        Oklad = oklad;
+	    }
+	    public ViddilKadriv(ViddilKadriv other)
+	    {
+	        Prizv = other.Prizv;
+	        Inicialy = other.Inicialy;
+	        RikNarodg = other.RikNarodg;
+          Oklad = other.Oklad;
+	    }
+	    public string Prizv
+	    {
+	        get { return pr; }
+	        set
+	        {
+	            if (!string.IsNullOrWhiteSpace(value))
+	                pr = value;
+	            else
+	            {
+	                Console.WriteLine("Прізвище не може бути порожнім. Встановлено 'Не вказано'.");
+	                pr = "Не вказано";
+	            }
+	        }
+	    }
+	    public string Inicialy
+	    {
+	        get { return inic; }
+	        set
+	        {
+	            if (!string.IsNullOrWhiteSpace(value))
+	                inic = value;
+	            else
+	            {
+	                Console.WriteLine("Ініціали не можуть бути порожніми. Встановлено 'Не вказано'.");
+	                inic = "Не вказано";
+	            }
+	        }
+	    }
+	    public int RikNarodg
+	    {
+	
+	        get { return rik; }
+	        set
+	        {
+	            if (value > 1950 && value < 2006)
+	                rik = value;
+	            else
+	            {
+	                Console.WriteLine("Рік народження повинен бути від 1950 до 2006. Встановлено 2006.");
+	                rik = 2006;
+	            }
+	        }
+	    }
+	    public double Oklad
+	    {
+	        get { return okl; }
+	        set
+	        {
+	            if (value > 0)
+	                okl = value;
+	            else
+	            {
+	                Console.WriteLine(" Оклад повинен бути більше 0. Встановлено 0.");
+	                okl = 0.0;
+	            }
+	        }
+	    }
+	    public void Show()
+	    {
+	        Console.WriteLine("Прізвище: " + Prizv);
+	        Console.WriteLine("Ініціали: " + Inicialy);
+	        Console.WriteLine("Рік народження: " + RikNarodg);
+	        Console.WriteLine("Оклад: " + Oklad + " грн.");
+	    }
+	    ~ViddilKadriv()
+	    {
+	        Console.WriteLine("Працівника видалено.");
+	    }
+	}
+	class Program
+	{
+	    static void Main()
+	    {
+	        ViddilKadriv r0 = new ViddilKadriv();
+	        r0.Show();
+	        ViddilKadriv r1 = new ViddilKadriv("Іванов", "І.І.", 1975, 517.50);
+	        r1.Show();
+	        ViddilKadriv r2 = new ViddilKadriv("Петренко", "П.П.", 1956, 219.10);
+	        r2.Show();
+	        ViddilKadriv r3 = new ViddilKadriv("Паніковський", "П.П.", 1967, 300.00);
+	        r3.Show();
+	        ViddilKadriv r4 = new ViddilKadriv("", "", 2025, -100.00);
+	        r4.Show();
+	        ViddilKadriv r5 = new ViddilKadriv(r1);
+	        r5.Show();
+	
+	        Console.WriteLine("Натисніть клавішу для завершення.");
+	        Console.ReadKey();
+	    }
+	}
